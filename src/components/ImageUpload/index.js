@@ -29,7 +29,7 @@ const useStyles = makeStyles({
 })
 
 
-function ImageUpload({ username }) {
+function ImageUpload({ username, setIsOpenUpload }) {
 
     const classes = useStyles()
 
@@ -74,11 +74,15 @@ function ImageUpload({ username }) {
             setProgress(0)
             setCaption('')
             setImage(null)
+            setIsOpenUpload(false)
         })
     }
 
     return (
         <div className="imageUpload__container">
+            <center>
+                <h3 style={{"marginBottom": "20px"}}>Upload Post</h3>
+            </center>
             <div className={classes.root}>
                 <LinearProgressWithLabel value={progress} />
             </div>

@@ -22,6 +22,11 @@
   object-fit: contain;
 }
 
+.app__uploadIcon {
+  width: 25px;
+  object-fit: contain;
+}
+
 .app__signUpForm {
   display: flex;
   flex-direction: column;
@@ -29,4 +34,6 @@
 
 .app__postsContainer {
   padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
 }

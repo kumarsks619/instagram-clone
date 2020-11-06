@@ -6,6 +6,7 @@ import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Input } from '@material-ui/core';
 import ImageUpload from './components/ImageUpload';
+import instagramPlusIcon from './assets/instagram-plus-icon.png'
 
 
 
@@ -38,6 +39,7 @@ function App() {
 
   const [isOpenSignUp, setIsOpenSignUp] = useState(false)
   const [isOpenLogin, setIsOpenLogin] = useState(false)
+  const [isOpenUpload, setIsOpenUpload] = useState(false)
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -108,11 +110,7 @@ function App() {
 
   return (
     <div className="app">
-
       
-      { user?.displayName && <ImageUpload username={user.displayName} /> }
-      
-
       <Modal
         open={isOpenSignUp}
         onClose={() => setIsOpenSignUp(false)}
@@ -179,6 +177,16 @@ function App() {
         </div>
       </Modal>
 
+
+      <Modal
+        open={isOpenUpload}
+        onClose={() => setIsOpenUpload(false)}
+      >
+        <div style={modalStyle} className={classes.paper}>
+          <ImageUpload username={user?.displayName} setIsOpenUpload={setIsOpenUpload} />
+        </div>
+      </Modal>
+
       <div className="app__header">
         <img
           src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
@@ -187,7 +195,16 @@ function App() {
         />
         {
           user ? (
-            <Button onClick={() => auth.signOut()}>Logout</Button>
+            <div className="app__userButtonsContainer">
+              <Button onClick={() => auth.signOut()}>Logout</Button>
+              <Button onClick={() => setIsOpenUpload(true)}>
+                <img
+                  src={instagramPlusIcon}
+                  alt="upload-post-icon"
+                  className="app__uploadIcon"
+                />
+              </Button>
+            </div>
           ) : (
             <div className="app__userButtonsContainer">
               <Button onClick={() => setIsOpenLogin(true)}>Login</Button>
